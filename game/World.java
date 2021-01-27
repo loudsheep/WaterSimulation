@@ -1,6 +1,5 @@
 package game;
 
-import game.particle.Color;
 import processing.core.PApplet;
 
 import java.util.HashMap;
@@ -99,11 +98,11 @@ public class World {
                     if (point(i, j + 1).id == 0) {
                         setPoint(i, j, 0);
                         setPoint(i, j + 1, 5);
-                    } else if (point(i - 1, j + 1).id == 0 && point(i + 1, j + 1).id == 0) {
+                    } else if (point(i - 1, j + 1).id == 0 && point(i + 1, j + 1).id == 0) {  // if space below and left or right are free
                         int move = Math.random() < 0.5 ? -1 : 1;
                         setPoint(i, j, 0);
                         setPoint(i + move, j + 1, 5);
-                    } else if (point(i - 1, j + 1).id == 0) {
+                    } else if (point(i - 1, j + 1).id == 0) { //
                         setPoint(i, j, 0);
                         setPoint(i - 1, j + 1, 5);
                     } else if (point(i + 1, j + 1).id == 0) {
@@ -113,14 +112,6 @@ public class World {
                         setPoint(i, j, 10);
                         setPoint(i, j + 1, 5);
                     }
-
-//                    else if (point(i - 1, j + 1).id == 10) {
-//                        setPoint(i, j, 10);
-//                        setPoint(i - 1, j + 1, 5);
-//                    } else if (point(i + 1, j + 1).id == 10) {
-//                        setPoint(i, j, 10);
-//                        setPoint(i + 1, j + 1, 5);
-//                    }
                 } else if (grid[i][j].id == 10 && !grid[i][j].updated) { // water update
                     if (point(i, j + 1).id == 0) {
                         setPoint(i, j + 1, 10);
@@ -191,13 +182,13 @@ public class World {
             }
         }
 
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < width; i++) { // reset 'updated' property after all physics calculations
             for (int j = 0; j < height; j++) {
                 grid[i][j].updated = false;
             }
         }
 
-        if (sketch.mousePressed) {
+        if (sketch.mousePressed) { // draw on map
             if (sketch.mouseX > 0 && sketch.mouseX < width && sketch.mouseY > 0 && sketch.mouseY < height) {
 //                grid[sketch.mouseX][sketch.mouseY].id = sketch.mouseButton == PApplet.LEFT ? 5 : 10;
                 if (sketch.mouseButton == PApplet.RIGHT) {
